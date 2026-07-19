@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Man Runner</title>
+    <title>🏃 Man Runner</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -20,9 +20,9 @@
 
 <body>
 
-    <!-- ===========================
-         LOADING SCREEN
-    ============================ -->
+    <!-- ========================= -->
+    <!-- START MENU -->
+    <!-- ========================= -->
 
     <div id="loadingScreen">
 
@@ -34,10 +34,12 @@
 
         <div id="overlay">
 
-            <h1>🏃 MAN RUNNER</h1>
+            <h1 id="gameTitle">
+                🏃 MAN RUNNER
+            </h1>
 
             <p>
-                Run • Jump • Dodge Obstacles • Collect Coins
+                Run • Jump • Collect Coins • Avoid Obstacles
             </p>
 
             <button id="startButton">
@@ -48,9 +50,9 @@
 
     </div>
 
-    <!-- ===========================
-         GAME CONTAINER
-    ============================ -->
+    <!-- ========================= -->
+    <!-- GAME -->
+    <!-- ========================= -->
 
     <div id="gameContainer" style="display:none;">
 
@@ -88,9 +90,9 @@
 
     </div>
 
-    <!-- ===========================
-         GAME OVER
-    ============================ -->
+    <!-- ========================= -->
+    <!-- GAME OVER -->
+    <!-- ========================= -->
 
     <div id="gameOver" style="display:none;">
 
@@ -100,19 +102,15 @@
             Score : 0
         </h2>
 
-        <button
-            id="restartButton"
-            onclick="location.reload()">
-
-            Restart
-
+        <button id="restartButton">
+            🔄 PLAY AGAIN
         </button>
 
     </div>
 
-    <!-- ===========================
-         PRELOAD IMAGES
-    ============================ -->
+    <!-- ========================= -->
+    <!-- PRELOAD IMAGES -->
+    <!-- ========================= -->
 
     <!-- Player -->
 
@@ -138,24 +136,10 @@
          src="assets/obstacles/fence.png"
          hidden>
 
-    <!-- Coins -->
+    <!-- Coin -->
 
     <img id="coin"
          src="assets/coins/coin.png"
-         hidden>
-
-    <!-- Effects -->
-
-    <img id="dust"
-         src="assets/effects/dust.png"
-         hidden>
-
-    <img id="sparkle"
-         src="assets/effects/sparkle.png"
-         hidden>
-
-    <img id="explosion"
-         src="assets/effects/explosion.png"
          hidden>
 
     <!-- Background -->
@@ -172,9 +156,56 @@
          src="assets/backgrounds/grass.png"
          hidden>
 
-    <!-- ===========================
-         JAVASCRIPT FILES
-    ============================ -->
+    <img id="sun"
+         src="assets/backgrounds/sun.png"
+         hidden>
+
+    <!-- Effects -->
+
+    <img id="dust"
+         src="assets/effects/dust.png"
+         hidden>
+
+    <img id="sparkle"
+         src="assets/effects/sparkle.png"
+         hidden>
+
+    <img id="explosion"
+         src="assets/effects/explosion.png"
+         hidden>
+
+    <!-- Powerups -->
+
+    <img id="speedBoost"
+         src="assets/effects/speed-boost.png"
+         hidden>
+
+    <img id="slowMotion"
+         src="assets/effects/slow-motion.png"
+         hidden>
+
+    <img id="heart"
+         src="assets/effects/heart.png"
+         hidden>
+
+    <!-- Sounds -->
+
+    <audio id="jumpSound" src="assets/sounds/jump.mp3"></audio>
+
+    <audio id="coinSound" src="assets/sounds/coin.mp3"></audio>
+
+    <audio id="hitSound" src="assets/sounds/hit.mp3"></audio>
+
+    <audio id="gameOverSound" src="assets/sounds/gameover.mp3"></audio>
+
+    <audio id="bgMusic"
+           src="assets/sounds/background.mp3"
+           loop>
+    </audio>
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
 
     <script src="js/player.js"></script>
     <script src="js/obstacle.js"></script>
