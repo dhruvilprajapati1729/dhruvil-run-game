@@ -1,7 +1,7 @@
-// ========================================
+// ==========================================
 // coin.js
-// Man Runner Game
-// ========================================
+// Man Runner
+// ==========================================
 
 class Coin {
 
@@ -12,8 +12,11 @@ class Coin {
         this.width = 50;
         this.height = 50;
 
-        this.x = canvas.width + Math.random() * 400;
-        this.y = 350 + Math.random() * 180;
+        // Spawn outside the right side of the screen
+        this.x = canvas.width + Math.random() * 300;
+
+        // Random height
+        this.y = 300 + Math.random() * 200;
 
         this.speed = gameSpeed;
 
@@ -23,10 +26,10 @@ class Coin {
 
     update() {
 
-        // Move coin to the left
+        // Move left
         this.x -= this.speed;
 
-        // Remove coin if it leaves the screen
+        // Remove if off-screen
         if (this.x + this.width < 0) {
 
             const index = coins.indexOf(this);
@@ -37,33 +40,14 @@ class Coin {
 
             }
 
+            return;
+
         }
 
-        // Check if player collected the coin
+        // Check collision
         if (!this.collected && this.checkCollision()) {
 
-            this.collected = true;
-
-            score += 10;
-
-            // Update HTML coin counter
-            const coinCounter = document.getElementById("coinCount");
-
-            if (coinCounter) {
-
-                coinCounter.textContent =
-                    parseInt(coinCounter.textContent) + 1;
-
-            }
-
-            // Remove collected coin
-            const index = coins.indexOf(this);
-
-            if (index > -1) {
-
-                coins.splice(index, 1);
-
-            }
+            this.collect();
 
         }
 
@@ -95,6 +79,40 @@ class Coin {
             player.y + player.height > this.y
 
         );
+
+    }
+
+    collect() {
+
+        this.collected = true;
+
+        score += 10;
+
+        // Update coin counter
+        const coinCounter = document.getElementById("coinCount");
+
+        if (coinCounter) {
+
+            coinCounter.textContent =
+                Number(coinCounter.textContent) + 1;
+
+        }
+
+        // Play sound if available
+        if (typeof playCoinSound === "function") {
+
+            playCoinSound();
+
+        }
+
+        // Remove coin
+        const index = coins.indexOf(this);
+
+        if (index > -1) {
+
+            coins.splice(index, 1);
+
+        }
 
     }
 
