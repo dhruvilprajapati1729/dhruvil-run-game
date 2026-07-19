@@ -23,28 +23,27 @@
     }
 }
 
-/* Zoom In */
-@keyframes zoomIn {
+/* Slide Up */
+@keyframes slideUp {
     from {
         opacity: 0;
-        transform: scale(.7);
+        transform: translateY(60px);
     }
-
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0);
     }
 }
 
-/* Zoom Out */
-@keyframes zoomOut {
+/* Slide Down */
+@keyframes slideDown {
     from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(.7);
         opacity: 0;
+        transform: translateY(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -56,7 +55,7 @@
     }
 
     50%{
-        transform:translateY(-10px);
+        transform:translateY(-12px);
     }
 
     100%{
@@ -66,15 +65,14 @@
 }
 
 /* Floating */
-
-@keyframes float {
+@keyframes floating {
 
     0%{
         transform:translateY(0);
     }
 
     50%{
-        transform:translateY(-15px);
+        transform:translateY(-8px);
     }
 
     100%{
@@ -83,8 +81,7 @@
 
 }
 
-/* Pulse */
-
+/* Button Pulse */
 @keyframes pulse {
 
     0%{
@@ -101,35 +98,24 @@
 
 }
 
-/* Shake */
+/* Glow */
+@keyframes glow {
 
-@keyframes shake {
-
-    0%{transform:translateX(0);}
-    20%{transform:translateX(-5px);}
-    40%{transform:translateX(5px);}
-    60%{transform:translateX(-5px);}
-    80%{transform:translateX(5px);}
-    100%{transform:translateX(0);}
-
-}
-
-/* Rotate */
-
-@keyframes rotate {
-
-    from{
-        transform:rotate(0deg);
+    0%{
+        box-shadow:0 0 8px rgba(255,255,255,.4);
     }
 
-    to{
-        transform:rotate(360deg);
+    50%{
+        box-shadow:0 0 25px gold;
+    }
+
+    100%{
+        box-shadow:0 0 8px rgba(255,255,255,.4);
     }
 
 }
 
 /* Coin Spin */
-
 @keyframes coinSpin {
 
     from{
@@ -142,16 +128,66 @@
 
 }
 
-/* Jump */
+/* Rotation */
+@keyframes rotate {
 
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+/* Cloud Movement */
+@keyframes cloudMove {
+
+    from{
+        transform:translateX(100%);
+    }
+
+    to{
+        transform:translateX(-120%);
+    }
+
+}
+
+/* Background Scroll */
+@keyframes backgroundScroll {
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:-2000px 0;
+    }
+
+}
+
+/* Shake */
+@keyframes shake {
+
+    0%{transform:translateX(0);}
+    20%{transform:translateX(-6px);}
+    40%{transform:translateX(6px);}
+    60%{transform:translateX(-6px);}
+    80%{transform:translateX(6px);}
+    100%{transform:translateX(0);}
+
+}
+
+/* Jump */
 @keyframes jump {
 
     0%{
         transform:translateY(0);
     }
 
-    50%{
-        transform:translateY(-80px);
+    40%{
+        transform:translateY(-90px);
     }
 
     100%{
@@ -161,187 +197,61 @@
 }
 
 /* Dust */
-
 @keyframes dust {
 
     from{
-
         opacity:1;
-        transform:scale(.5);
-
+        transform:scale(.4);
     }
 
     to{
-
         opacity:0;
         transform:scale(2);
-
     }
 
 }
 
 /* Sparkle */
-
 @keyframes sparkle {
 
     0%{
-
         opacity:0;
         transform:scale(.5);
-
     }
 
     50%{
-
         opacity:1;
         transform:scale(1.4);
-
     }
 
     100%{
-
         opacity:0;
         transform:scale(.5);
-
     }
 
 }
 
-/* Background Scroll */
-
-@keyframes backgroundMove {
+/* Explosion */
+@keyframes explosion {
 
     from{
-
-        background-position:0 0;
-
-    }
-
-    to{
-
-        background-position:-2000px 0;
-
-    }
-
-}
-
-/* Cloud Movement */
-
-@keyframes cloudMove {
-
-    from{
-
-        transform:translateX(100vw);
-
-    }
-
-    to{
-
-        transform:translateX(-200px);
-
-    }
-
-}
-
-/* Sun Glow */
-
-@keyframes sunGlow {
-
-    0%{
-
-        filter:brightness(1);
-
-    }
-
-    50%{
-
-        filter:brightness(1.4);
-
-    }
-
-    100%{
-
-        filter:brightness(1);
-
-    }
-
-}
-
-/* Button Glow */
-
-@keyframes glow {
-
-    0%{
-
-        box-shadow:0 0 5px #fff;
-
-    }
-
-    50%{
-
-        box-shadow:0 0 25px gold;
-
-    }
-
-    100%{
-
-        box-shadow:0 0 5px #fff;
-
-    }
-
-}
-
-/* Slide Down */
-
-@keyframes slideDown {
-
-    from{
-
-        transform:translateY(-120px);
-
-        opacity:0;
-
-    }
-
-    to{
-
-        transform:translateY(0);
-
+        transform:scale(.5);
         opacity:1;
-
-    }
-
-}
-
-/* Slide Up */
-
-@keyframes slideUp {
-
-    from{
-
-        transform:translateY(120px);
-
-        opacity:0;
-
     }
 
     to{
-
-        transform:translateY(0);
-
-        opacity:1;
-
+        transform:scale(2);
+        opacity:0;
     }
 
 }
 
 /* Game Over */
-
 @keyframes gameOver {
 
     from{
 
-        transform:scale(.4);
+        transform:scale(.6);
 
         opacity:0;
 
@@ -357,39 +267,48 @@
 
 }
 
-/* Victory */
+/* Rainbow Title */
+@keyframes rainbow {
 
-@keyframes victory {
-
-    0%{
-
-        transform:rotate(-4deg);
-
-    }
-
-    50%{
-
-        transform:rotate(4deg);
-
-    }
-
-    100%{
-
-        transform:rotate(-4deg);
-
-    }
+    0%{color:#ff0000;}
+    20%{color:#ff9800;}
+    40%{color:#ffee00;}
+    60%{color:#00ff00;}
+    80%{color:#00ccff;}
+    100%{color:#ff00ff;}
 
 }
 
-/* Rainbow */
+/* ==========================================
+   Default Animations
+========================================== */
 
-@keyframes rainbow {
+#gameTitle{
 
-    0%{color:red;}
-    20%{color:orange;}
-    40%{color:yellow;}
-    60%{color:lime;}
-    80%{color:cyan;}
-    100%{color:magenta;}
+    animation:
+        slideDown 1s ease,
+        rainbow 6s linear infinite;
+
+}
+
+#startButton{
+
+    animation:
+        pulse 2s infinite,
+        glow 2s infinite;
+
+}
+
+#menuBackground{
+
+    animation:
+        fadeIn 2s;
+
+}
+
+#gameOver{
+
+    animation:
+        gameOver .5s ease;
 
 }
