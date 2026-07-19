@@ -1,0 +1,295 @@
+/* ============================
+   MAN RUNNER - style.css
+============================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#87CEEB;
+    overflow:hidden;
+}
+
+/* ============================
+   Loading Screen
+============================ */
+
+#loadingScreen{
+    position:fixed;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(#7ecbff,#dff6ff);
+    z-index:999;
+}
+
+/* Animated Running Man */
+
+#runningLogo{
+    width:128px;
+    height:128px;
+
+    background-image:url("assets/man-run.png");
+    background-repeat:no-repeat;
+    background-size:1024px 128px;
+
+    animation:
+        run 0.8s steps(8) infinite,
+        bounce 0.5s ease-in-out infinite alternate;
+
+    margin-bottom:25px;
+}
+
+@keyframes run{
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:-1024px 0;
+    }
+
+}
+
+@keyframes bounce{
+
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(-10px);
+    }
+
+}
+
+/* Title */
+
+#loadingScreen h1{
+    font-size:54px;
+    color:#222;
+    text-shadow:2px 2px #fff;
+}
+
+#loadingScreen p{
+    margin-top:10px;
+    margin-bottom:30px;
+    font-size:22px;
+    color:#444;
+}
+
+/* ============================
+   Buttons
+============================ */
+
+button{
+
+    border:none;
+
+    padding:16px 40px;
+
+    font-size:24px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+#startButton{
+
+    background:#ff9800;
+
+    color:white;
+
+}
+
+#startButton:hover{
+
+    background:#ff6f00;
+
+    transform:scale(1.08);
+
+}
+
+#restartButton{
+
+    background:#f44336;
+
+    color:white;
+
+}
+
+#restartButton:hover{
+
+    background:#d32f2f;
+
+}
+
+/* ============================
+   Game Area
+============================ */
+
+#gameContainer{
+
+    display:none;
+
+    width:100%;
+
+    height:100vh;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+}
+
+/* Canvas */
+
+#gameCanvas{
+
+    display:block;
+
+    width:1280px;
+
+    height:720px;
+
+    max-width:100%;
+
+    max-height:100%;
+
+    border:5px solid white;
+
+    background:#87CEEB;
+
+}
+
+/* ============================
+   HUD
+============================ */
+
+#hud{
+
+    position:absolute;
+
+    top:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.panel{
+
+    background:rgba(255,255,255,.85);
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+/* ============================
+   Game Over
+============================ */
+
+#gameOver{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.8);
+
+    color:white;
+
+    display:none;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+#gameOver h1{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+}
+
+#gameOver p{
+
+    font-size:28px;
+
+}
+
+#finalScore{
+
+    font-size:50px;
+
+    margin:20px;
+
+}
+
+/* Hide Preloaded Images */
+
+img[hidden]{
+    display:none;
+}
+
+/* ============================
+   Mobile
+============================ */
+
+@media (max-width:768px){
+
+    #runningLogo{
+        width:96px;
+        height:96px;
+        background-size:768px 96px;
+    }
+
+    #loadingScreen h1{
+        font-size:36px;
+    }
+
+    #loadingScreen p{
+        font-size:18px;
+        text-align:center;
+        padding:0 20px;
+    }
+
+    button{
+        font-size:20px;
+        padding:12px 28px;
+    }
+
+    .panel{
+        font-size:16px;
+    }
+
+}
