@@ -1,31 +1,92 @@
-<div id="loadingScreen">
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- Background Image -->
-    <img
-        src="assets/ui/menu-background.jpg"
-        alt="Man Runner"
-        id="menuBackground"
-    >
+<head>
 
-    <!-- Dark Overlay -->
-    <div id="overlay">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <h1>🏃 MAN RUNNER</h1>
+    <title>Man Runner</title>
 
-        <p>
-            Run • Jump • Dodge Obstacles • Collect Coins
-        </p>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
 
-        <button id="startButton">
-            ▶ START GAME
-        </button>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/ui/favicon.png">
+
+</head>
+
+<body>
+
+    <!-- ===========================
+         Loading Screen
+    ============================ -->
+
+    <div id="loadingScreen">
+
+        <!-- Background Image -->
+        <img
+            src="assets/ui/menu-background.jpg"
+            alt="Man Runner"
+            id="menuBackground"
+        >
+
+        <!-- Dark Overlay -->
+        <div id="overlay">
+
+            <h1>🏃 MAN RUNNER</h1>
+
+            <p>
+                Run • Jump • Dodge Obstacles • Collect Coins
+            </p>
+
+            <button id="startButton">
+                ▶ START GAME
+            </button>
+
+        </div>
 
     </div>
 
-</div>
+    <!-- ===========================
+         Game Container
+    ============================ -->
 
-<div id="gameContainer" style="display:none;">
+    <div id="gameContainer" style="display:none;">
 
-    <canvas id="gameCanvas" width="1280" height="720"></canvas>
+        <canvas id="gameCanvas" width="1280" height="720"></canvas>
 
-</div>
+    </div>
+
+    <!-- ===========================
+         Hidden Game Assets
+    ============================ -->
+
+    <img id="playerRun" src="assets/player/man-run.png" hidden>
+    <img id="playerJump" src="assets/player/man-jump.png" hidden>
+
+    <img id="coin" src="assets/coins/coin.png" hidden>
+
+    <img id="rock" src="assets/obstacles/rock.png" hidden>
+    <img id="cactus" src="assets/obstacles/cactus.png" hidden>
+    <img id="fence" src="assets/obstacles/fence.png" hidden>
+
+    <img id="dust" src="assets/effects/dust.png" hidden>
+    <img id="sparkle" src="assets/effects/sparkle.png" hidden>
+    <img id="explosion" src="assets/effects/explosion.png" hidden>
+
+    <!-- ===========================
+         JavaScript Files
+    ============================ -->
+
+    <script src="js/player.js"></script>
+    <script src="js/obstacle.js"></script>
+    <script src="js/coin.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/game.js"></script>
+
+</body>
+
+</html>
