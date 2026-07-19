@@ -1,72 +1,78 @@
-// ===============================
-// Man Runner - game.js
-// ===============================
+// ==========================================
+// game.js
+// Man Runner
+// ==========================================
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+// Canvas Size
 canvas.width = 1280;
 canvas.height = 720;
 
+// HTML Elements
 const loadingScreen = document.getElementById("loadingScreen");
 const gameContainer = document.getElementById("gameContainer");
 const startButton = document.getElementById("startButton");
+const restartButton = document.getElementById("restartButton");
+const gameOverScreen = document.getElementById("gameOver");
+
+// Game Variables
+let player;
+
+let obstacles = [];
+let coins = [];
 
 let score = 0;
-let highScore = localStorage.getItem("highScore") || 0;
+let highScore = Number(localStorage.getItem("highScore")) || 0;
 
 let gameSpeed = 6;
 
 let gameRunning = false;
 
-let player;
-let obstacles = [];
-let coins = [];
-
 let lastTime = 0;
 
-// -------------------------------
+// ==========================================
 // Start Game
-// -------------------------------
+// ==========================================
 
-startButton.addEventListener("click", () => {
+startButton.addEventListener("click", startGame);
+
+function startGame(){
 
     loadingScreen.style.display = "none";
-    gameContainer.style.display = "block";
 
-    startGame();
+    gameContainer.style.display = "flex";
 
-});
+    gameOverScreen.style.display = "none";
 
-// -------------------------------
-
-function startGame() {
-
-    score = 0;
+    player = new Player();
 
     obstacles = [];
 
     coins = [];
 
-    player = new Player();
+    score = 0;
 
     gameRunning = true;
+
+    lastTime = performance.now();
 
     requestAnimationFrame(gameLoop);
 
 }
 
-// -------------------------------
-// Main Loop
-// -------------------------------
+// ==========================================
+// Main Game Loop
+// ==========================================
 
-function gameLoop(timestamp) {
+function gameLoop(timeStamp){
 
-    if (!gameRunning) return;
+    if(!gameRunning) return;
 
-    const deltaTime = timestamp - lastTime;
+    const deltaTime = timeStamp - lastTime;
 
-    lastTime = timestamp;
+    lastTime = timeStamp;
 
     update(deltaTime);
 
@@ -76,33 +82,35 @@ function gameLoop(timestamp) {
 
 }
 
-// -------------------------------
+// ==========================================
 // Update
-// -------------------------------
+// ==========================================
 
-function update(deltaTime) {
+function update(deltaTime){
 
     score += deltaTime * 0.01;
 
-    player.update();
-
-    obstacles.forEach(obstacle => obstacle.update());
-
-    coins.forEach(coin => coin.update());
+    player.update(deltaTime);
 
     spawnObstacle();
 
     spawnCoin();
 
+    obstacles.forEach(obstacle => obstacle.update());
+
+    coins.forEach(coin => coin.update());
+
 }
 
-// -------------------------------
+// ==========================================
 // Draw
-// -------------------------------
+// ==========================================
 
-function draw() {
+function draw(){
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    drawSky();
 
     drawGround();
 
@@ -112,75 +120,93 @@ function draw() {
 
     coins.forEach(coin => coin.draw(ctx));
 
-    drawHUD();
+    updateHUD();
 
 }
 
-// -------------------------------
-// Ground
-// -------------------------------
+// ==========================================
+// Background
+// ==========================================
 
-function drawGround() {
+function drawSky(){
 
-    ctx.fillStyle = "#6BCB3C";
+    ctx.fillStyle = "#87CEEB";
 
-    ctx.fillRect(0, 620, canvas.width, 100);
-
-}
-
-// -------------------------------
-// HUD
-// -------------------------------
-
-function drawHUD() {
-
-    ctx.fillStyle = "white";
-
-    ctx.font = "32px Arial";
-
-    ctx.fillText("Score : " + Math.floor(score), 40, 50);
-
-    ctx.fillText("High Score : " + Math.floor(highScore), 40, 90);
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
 }
 
-// -------------------------------
+function drawGround(){
+
+    ctx.fillStyle = "#4CAF50";
+
+    ctx.fillRect(0,620,canvas.width,100);
+
+}
+
+// ==========================================
 // Spawn Obstacles
-// -------------------------------
+// ==========================================
 
-function spawnObstacle() {
+let obstacleTimer = 0;
 
-    if (Math.random() < 0.01) {
+function spawnObstacle(){
+
+    obstacleTimer++;
+
+    if(obstacleTimer > 120){
 
         obstacles.push(new Obstacle());
 
+        obstacleTimer = 0;
+
     }
 
 }
 
-// -------------------------------
+// ==========================================
 // Spawn Coins
-// -------------------------------
+// ==========================================
 
-function spawnCoin() {
+let coinTimer = 0;
 
-    if (Math.random() < 0.015) {
+function spawnCoin(){
+
+    coinTimer++;
+
+    if(coinTimer > 80){
 
         coins.push(new Coin());
 
+        coinTimer = 0;
+
     }
 
 }
 
-// -------------------------------
-// Game Over
-// -------------------------------
+// ==========================================
+// Update HUD
+// ==========================================
 
-function gameOver() {
+function updateHUD(){
+
+    document.getElementById("score").textContent =
+        Math.floor(score);
+
+    document.getElementById("highScore").textContent =
+        highScore;
+
+}
+
+// ==========================================
+// Game Over
+// ==========================================
+
+function gameOver(){
 
     gameRunning = false;
 
-    if (score > highScore) {
+    if(score > highScore){
 
         highScore = Math.floor(score);
 
@@ -188,8 +214,19 @@ function gameOver() {
 
     }
 
-    alert("Game Over!\nScore : " + Math.floor(score));
+    document.getElementById("finalScore").textContent =
+        "Score : " + Math.floor(score);
+
+    gameOverScreen.style.display = "flex";
+
+}
+
+// ==========================================
+// Restart
+// ==========================================
+
+restartButton.addEventListener("click", ()=>{
 
     location.reload();
 
-}
+});
