@@ -1,45 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Man Runner</title>
+<div id="loadingScreen">
 
-    <link rel="icon" href="assets/favicon.png">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <!-- Background Image -->
+    <img
+        src="assets/ui/menu-background.jpg"
+        alt="Man Runner"
+        id="menuBackground"
+    >
 
-<body>
-
-    <!-- Loading Screen -->
-    <div id="loadingScreen">
-
-        <!-- Running Man Logo -->
-        <img
-            src="assets/man-run.png"
-            alt="Running Man"
-            id="gameLogo"
-        >
+    <!-- Dark Overlay -->
+    <div id="overlay">
 
         <h1>🏃 MAN RUNNER</h1>
 
-        <p>Run • Jump • Collect Coins • Beat Your High Score!</p>
+        <p>
+            Run • Jump • Dodge Obstacles • Collect Coins
+        </p>
 
         <button id="startButton">
-            ▶ Start Game
+            ▶ START GAME
         </button>
 
     </div>
 
-    <!-- Game -->
-    <div id="gameContainer" style="display:none;">
+</div>
 
-        <canvas id="gameCanvas" width="1280" height="720"></canvas>
+<div id="gameContainer" style="display:none;">
 
-    </div>
+    <canvas id="gameCanvas" width="1280" height="720"></canvas>
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
-
-</body>
-</html>
+</div>
